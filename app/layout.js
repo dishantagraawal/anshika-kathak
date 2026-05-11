@@ -21,12 +21,6 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Anshika Agrawal | Kathak Maestro - Jaipur Gharana",
-  description:
-    "Anshika Agrawal — Where Tradition Meets Timeless Grace. Celebrated Kathak virtuoso of the Jaipur Gharana.",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html
@@ -39,3 +33,34 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export const metadata = {
+  title: "Anshika Agrawal | Kathak Maestro - Jaipur Gharana",
+  description:
+    "Anshika Agrawal — Where Tradition Meets Timeless Grace. Celebrated Kathak virtuoso of the Jaipur Gharana.",
+  keywords: [
+    "Anshika Kathak",
+    "anshikakathak",
+    "Kathak dancer",
+    "Aligarh",
+    "Mumbai",
+    "Prayag Sangeet Samiti",
+    "Allahabad",
+    "Delhi University",
+    "Doordarshan",
+    "SPIC MACAY",
+    "Ganesh Acharya",
+    "Rekha Ji",
+  ],
+  metadataBase: new URL("https://anshikakathak.com"),
+  openGraph: {
+    title: "Anshika Kathak",
+    description: "Official website of Anshika Kathak",
+    url: "https://anshikakathak.com",
+    siteName: "Anshika Kathak",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://anshikakathak.com",
+  },
+};
