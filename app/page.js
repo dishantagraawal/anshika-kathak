@@ -23,6 +23,7 @@ import {
   MonitorPlay,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 
 // Add your file as public/images/hero/hero.jpg (or change path/extension below)
 const HERO_IMG = "/images/home.jpg";
@@ -50,7 +51,7 @@ const GALLERY_CATEGORIES = [
     images: [
       "/images/gallery/media/1.jpg",
       "/images/gallery/media/2.jpg",
-      "/images/gallery/media/3.jpeg",
+      "/images/gallery/media/3.jpg",
       "/images/gallery/media/4.jpg",
       "/images/gallery/media/5.jpg",
     ],
@@ -189,6 +190,25 @@ const VIDEOS = [
   },
 ];
 
+function YoutubeThumbnail({ videoId, title }) {
+  const [thumbSrc, setThumbSrc] = useState(
+    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+  );
+  return (
+    <Image
+      src={thumbSrc}
+      alt={title}
+      fill
+      sizes="(max-width: 768px) 100vw, 33vw"
+      className="object-cover transition-transform duration-700 group-hover:scale-110"
+      loading="lazy"
+      onError={() =>
+        setThumbSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)
+      }
+    />
+  );
+}
+
 const Ornament = () => (
   <svg
     viewBox="0 0 100 20"
@@ -236,10 +256,12 @@ function EventCard({ ev }) {
           aria-hidden={flipped}
         >
           <div className="relative aspect-[4/5] shrink-0 overflow-hidden">
-            <img
+            <Image
               src={ev.image}
               alt=""
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              fill
+              sizes="(max-width: 1024px) 100vw, 33vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0604] via-transparent to-transparent" />
             <span className="absolute left-4 top-4 bg-amber-500 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0c0604]">
@@ -637,10 +659,13 @@ export default function App() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src={HERO_IMG}
             alt="Kathak"
-            className="w-full h-full object-cover animate-slowZoom"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover animate-slowZoom"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0c0604]/80 via-[#0c0604]/60 to-[#0c0604]" />
           <div className="absolute inset-0 bg-radial-gold" />
@@ -843,10 +868,13 @@ export default function App() {
           <Reveal delay={90}>
             <div className="mt-1 text-center">
               <div className="mx-auto flex max-w-md justify-center md:mb-5">
-                <img
+                <Image
                   src={KATHAK_JHANKAAR_LOGO}
                   alt="Kathak Jhankaar — Online Kathak Academy"
+                  width={340}
+                  height={140}
                   className="mx-auto h-auto max-h-36 w-auto max-w-[min(280px,78vw)] object-contain md:max-h-44 md:max-w-[min(340px,70vw)]"
+                  priority={true}
                 />
               </div>
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.42em] text-amber-500/90">
@@ -937,10 +965,13 @@ export default function App() {
                   className="group relative w-[min(72vw,220px)] shrink-0 overflow-hidden rounded-sm border border-amber-600/25 shadow-md md:w-auto"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]">
-                    <img
+                    <Image
                       src={im.src}
                       alt={im.alt}
                       className="h-full w-full object-cover transition-[transform,filter] duration-[650ms] ease-out will-change-transform group-hover:scale-[1.06] group-hover:brightness-[1.08]"
+                      loading="lazy"
+                      fill
+                      sizes="(max-width: 768px) 72vw, 20vw"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0c0604]/75 via-[#0c0604]/10 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-55" />
                     <div className="absolute inset-x-3 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-amber-400/90 to-amber-600/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
@@ -1030,10 +1061,13 @@ export default function App() {
                     onMouseEnter={() => beginGallerySpotlight(0)}
                     className="relative z-[1] min-h-0 h-full w-full overflow-hidden md:col-start-1 md:row-start-1"
                   >
-                    <img
+                    <Image
                       src={activeGallery.images[0]}
                       alt={`${activeGallery.label} — left`}
                       className={`h-full min-h-0 w-full object-cover transition-opacity duration-300 ease-in-out ${gallerySpotlightIndex === 0 ? "opacity-0" : "opacity-100"}`}
+                      loading="lazy"
+                      fill
+                      sizes="(max-width: 768px) 46vw, 18vw"
                     />
                   </div>
                   <div
@@ -1043,10 +1077,13 @@ export default function App() {
                     onMouseEnter={() => beginGallerySpotlight(3)}
                     className="relative z-[1] min-h-0 h-full w-full overflow-hidden md:col-start-3 md:row-start-1"
                   >
-                    <img
+                    <Image
                       src={activeGallery.images[3]}
                       alt={`${activeGallery.label} — right top`}
                       className={`h-full min-h-0 w-full object-cover transition-opacity duration-300 ease-in-out ${gallerySpotlightIndex === 3 ? "opacity-0" : "opacity-100"}`}
+                      loading="lazy"
+                      fill
+                      sizes="(max-width: 768px) 46vw, 18vw"
                     />
                   </div>
                 </div>
@@ -1058,10 +1095,13 @@ export default function App() {
                   onMouseEnter={() => beginGallerySpotlight(2)}
                   className="relative z-[1] min-h-0 h-full w-full overflow-hidden md:col-start-2 md:row-span-2 md:row-start-1"
                 >
-                  <img
+                  <Image
                     src={activeGallery.images[2]}
                     alt={`${activeGallery.label} — center`}
                     className={`h-full min-h-0 w-full object-cover object-center transition-opacity duration-300 ease-in-out ${gallerySpotlightIndex === 2 ? "opacity-0" : "opacity-100"}`}
+                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 38vw"
                   />
                 </div>
 
@@ -1073,10 +1113,13 @@ export default function App() {
                     onMouseEnter={() => beginGallerySpotlight(1)}
                     className="relative z-[1] min-h-0 h-full w-full overflow-hidden md:col-start-1 md:row-start-2"
                   >
-                    <img
+                    <Image
                       src={activeGallery.images[1]}
                       alt={`${activeGallery.label} — left bottom`}
                       className={`h-full min-h-0 w-full object-cover transition-opacity duration-300 ease-in-out ${gallerySpotlightIndex === 1 ? "opacity-0" : "opacity-100"}`}
+                      loading="lazy"
+                      fill
+                      sizes="(max-width: 768px) 46vw, 18vw"
                     />
                   </div>
                   <div
@@ -1086,10 +1129,13 @@ export default function App() {
                     onMouseEnter={() => beginGallerySpotlight(4)}
                     className="relative z-[1] min-h-0 h-full w-full overflow-hidden md:col-start-3 md:row-start-2"
                   >
-                    <img
+                    <Image
                       src={activeGallery.images[4]}
                       alt={`${activeGallery.label} — right bottom`}
                       className={`h-full min-h-0 w-full object-cover transition-opacity duration-300 ease-in-out ${gallerySpotlightIndex === 4 ? "opacity-0" : "opacity-100"}`}
+                      loading="lazy"
+                      fill
+                      sizes="(max-width: 768px) 46vw, 18vw"
                     />
                   </div>
                 </div>
@@ -1111,7 +1157,7 @@ export default function App() {
                   }}
                   onTransitionEnd={onGalleryOverlayTransitionEnd}
                 >
-                  <img
+                  <Image
                     src={activeGallery.images[gallerySpotlightIndex]}
                     alt=""
                     className={`h-full w-full object-contain object-center transition-[filter] duration-[450ms] ease-in-out ${
@@ -1119,6 +1165,9 @@ export default function App() {
                         ? "brightness-[1.06] contrast-[1.02]"
                         : "brightness-100 contrast-100"
                     }`}
+                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 94vw, min(90vw, 1100px)"
                   />
                 </div>
               )}
@@ -1142,14 +1191,7 @@ export default function App() {
                 className="card-elegant overflow-hidden group cursor-pointer transition-all"
               >
                 <div className="aspect-video relative bg-black overflow-hidden">
-                  <img
-                    src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`}
-                    onError={(e) => {
-                      e.currentTarget.src = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
-                    }}
-                    alt={v.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
+                  <YoutubeThumbnail videoId={v.id} title={v.title} />
                   <div className="absolute inset-0 bg-[#0c0604]/40 group-hover:bg-[#0c0604]/20 transition-colors flex items-center justify-center">
                     <a
                       href={`https://www.youtube.com/watch?v=${v.id}`}

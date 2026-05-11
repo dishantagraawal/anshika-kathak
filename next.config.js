@@ -6,6 +6,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "picsum.photos",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        pathname: "/vi/**",
+      },
     ],
   },
 };
