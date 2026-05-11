@@ -245,23 +245,21 @@ function EventCard({ ev }) {
   }, [flipped]);
 
   return (
-    <article className="group h-full min-h-[32rem] [perspective:1100px]">
+    <article className="group h-full min-h-[45rem] lg:min-h-[39rem] [perspective:1100px]">
       <div
         className="relative h-full min-h-[32rem] w-full rounded-sm transition-transform duration-700 ease-out [transform-style:preserve-3d]"
         style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
         {/* Front */}
         <div
-          className="absolute inset-0 flex min-h-[32rem] flex-col overflow-hidden rounded-sm border border-amber-500/20 bg-[#0c0604] [backface-visibility:hidden] [transform:translateZ(1px)]"
+          className="absolute inset-0 flex min-h-[39rem] flex-col overflow-hidden rounded-sm border border-amber-500/20 bg-[#0c0604] [backface-visibility:hidden] [transform:translateZ(1px)]"
           aria-hidden={flipped}
         >
           <div className="relative aspect-[4/5] shrink-0 overflow-hidden">
-            <Image
+            <img
               src={ev.image}
               alt=""
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              fill
-              sizes="(max-width: 1024px) 100vw, 33vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0604] via-transparent to-transparent" />
             <span className="absolute left-4 top-4 bg-amber-500 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0c0604]">
@@ -293,7 +291,7 @@ function EventCard({ ev }) {
 
         {/* Back */}
         <div
-          className="absolute inset-0 flex min-h-[32rem] flex-col overflow-y-auto rounded-sm border border-amber-500/30 bg-[#0c0604] p-6 [backface-visibility:hidden] [transform:rotateY(180deg)_translateZ(1px)]"
+          className="absolute inset-0 flex h-full min-h-[42rem] flex-col overflow-y-auto rounded-sm border border-amber-500/30 bg-[#0c0604] p-6 [backface-visibility:hidden] [transform:rotateY(180deg)_translateZ(1px)]"
           aria-hidden={!flipped}
         >
           <span className="mb-4 inline-block w-fit bg-amber-500/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-400">
@@ -798,7 +796,7 @@ export default function App() {
                     <div className="font-serif-display text-3xl text-gold-gradient">
                       {s.n}
                     </div>
-                    <div className="text-xs uppercase tracking-wider text-amber-100/60 mt-2">
+                    <div className="text-[9px] lg:text-xs uppercase tracking-wider text-amber-100/60 mt-2">
                       {s.l}
                     </div>
                   </div>
@@ -829,7 +827,7 @@ export default function App() {
             subtitle="Experience the artistry of Kathak live on stage."
           />
 
-          <div className="grid h-[49rem] md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid h-max gap-6 grid-cols-1 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:h-[49rem]">
             {EVENTS.map((ev, i) => (
               <EventCard key={i} ev={ev} />
             ))}
