@@ -1235,7 +1235,7 @@ export default function App() {
 
               <div className="space-y-6">
                 <a
-                  href="mailto:rajendragangani@yahoo.com"
+                  href="mailto:bookings@anshikakathak.com"
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-12 h-12 border border-amber-500/40 flex items-center justify-center group-hover:bg-amber-500/10 transition-colors flex-shrink-0">
